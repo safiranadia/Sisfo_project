@@ -1,16 +1,16 @@
 @extends('layouts.index')
 
-@section('title', 'Items | Sisfo')
+@section('title', 'Categorys | Sisfo')
 @section('content')
     <div class="row">
         <div class="col-12">
             <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                <h4 class="mb-sm-0 font-size-18">Items</h4>
+                <h4 class="mb-sm-0 font-size-18">Categorys</h4>
 
                 <div class="page-title-right">
                     <ol class="breadcrumb m-0">
                         <li class="breadcrumb-item"><a href="javascript: void(0);">Menu</a></li>
-                        <li class="breadcrumb-item active">Items</li>
+                        <li class="breadcrumb-item active">Categorys</li>
                     </ol>
                 </div>
 
@@ -20,9 +20,9 @@
 
     <div class="card">
         <div class="card-header d-flex justify-content-between align-items-center">
-            <h4 class="card-title">Create Item</h4>
+            <h4 class="card-title">Create Category</h4>
             <button type="button" class="btn btn-success waves-effect waves-light" data-bs-toggle="modal"
-                data-bs-target="#createItem">Create Item</button>
+                data-bs-target="#createCategory">Create Category</button>
         </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -30,42 +30,25 @@
                     <thead>
                         <tr>
                             <th>#</th>
-                            <th>Code Item</th>
                             <th>Name</th>
-                            <th>Category</th>
-                            <th>Image</th>
-                            <th>Stock</th>
-                            <th>Condition</th>
-                            <th>Location</th>
+                            <th>Description</th>
                             <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($items as $item)
+                        @foreach ($categorys as $category)
                             <tr>
                                 <th scope="row">{{ $loop->iteration }}</th>
-                                <td>{{ $item->code_item }}</td>
-                                <td>{{ $item->name }}</td>
-                                <td>{{ $item->category->name }}</td>
-                                <td>
-                                    @if ($item->image)
-                                        <img src="{{ asset('storage/img/' . $item->image) }}" alt="{{ $item->name }}"
-                                            width="50" height="50">
-                                    @else
-                                        <span class="text-muted">No image</span>
-                                    @endif
-                                </td>
-                                <td>{{ $item->stock }}</td>
-                                <td>{{ $item->condition }}</td>
-                                <td>{{ $item->location }}</td>
+                                <td>{{ $category->name }}</td>
+                                <td>{{ $category->description }}</td>
                                 <td>
                                     <div class="d-flex gap-2">
                                         <button type="button" class="btn btn-warning waves-effect waves-light"
-                                            data-bs-toggle="modal" data-bs-target="#editItem{{ $item->id }}">
+                                            data-bs-toggle="modal" data-bs-target="#editCategory{{ $category->id }}">
                                             <i class="fas fa-pencil-alt"></i>
                                             <span>Edit</span>
                                         </button>
-                                        <form action="{{ route('item.destroy', $item->id) }}" method="POST">
+                                        <form action="{{ route('category.destroy', $category->id) }}" method="POST">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="btn btn-danger waves-effect waves-light">
@@ -84,6 +67,6 @@
         <!-- end card body -->
     </div>
 
-    @include('modals.editItem_modal')
-    @include('modals.createItem_modal')
+    @include('modals.editCategory_modal')
+    @include('modals.createCategory_modal')
 @endsection

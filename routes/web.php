@@ -2,6 +2,9 @@
 
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\UsersController;
+use App\Http\Controllers\Admin\CategorysController;
+use App\Http\Controllers\Admin\ItemsController;
+use App\Http\Controllers\Admin\BorrowsController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Middleware\AdminMiddleware;
@@ -32,4 +35,17 @@ Route::middleware('auth')->post('logout', [AuthController::class, 'logout'])->na
 Route::middleware('auth', AdminMiddleware::class)->group(function () {
     Route::get('/dashboard', [AdminController::class, 'index'])->name('dashboard');
     Route::get('/users', [UsersController::class, 'index'])->name('users');
+    Route::post('/users', [UsersController::class, 'store'])->name('user.store');
+    Route::put('/users/{user}', [UsersController::class, 'update'])->name('user.update');
+    Route::delete('/users/{user}', [UsersController::class, 'destroy'])->name('user.destroy');
+    Route::get('/categorys', [CategorysController::class, 'index'])->name('categorys');
+    Route::post('/categorys', [CategorysController::class, 'store'])->name('category.store');
+    Route::put('/categorys/{category}', [CategorysController::class, 'update'])->name('category.update');
+    Route::delete('/categorys/{category}', [CategorysController::class, 'destroy'])->name('category.destroy');
+    Route::get('/items', [ItemsController::class, 'index'])->name('items');
+    Route::post('/items', [ItemsController::class, 'store'])->name('item.store');
+    Route::put('/items/{item}', [ItemsController::class, 'update'])->name('item.update');
+    Route::delete('/items/{item}', [ItemsController::class, 'destroy'])->name('item.destroy');
+    Route::get('/borrows', [BorrowsController::class, 'index'])->name('borrows');
+    Route::post('/borrows/{id}/approve', [BorrowsController::class, 'approve'])->name('borrows.approve');
 });

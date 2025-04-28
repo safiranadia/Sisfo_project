@@ -218,8 +218,13 @@
                             <a class="dropdown-item" href="auth-lock-screen.html"><i
                                     class="mdi mdi-lock font-size-16 align-middle me-1"></i> Lock Screen</a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="auth-logout.html"><i
-                                    class="mdi mdi-logout font-size-16 align-middle me-1"></i> Logout</a>
+                            <a class="dropdown-item" href="{{ route('logout') }}"
+                                onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                <i class="mdi mdi-logout font-size-16 align-middle me-1"></i> Logout
+                            </a>
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                @csrf
+                            </form>
                         </div>
                     </div>
 
@@ -253,9 +258,23 @@
                         </li>
 
                         <li>
-                            <a href="">
+                            <a href="{{ route('categorys') }}">
+                                <i data-feather="grid"></i>
+                                <span data-key="t-dashboard">Categorys</span>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="{{ route('items') }}">
                                 <i data-feather="archive"></i>
                                 <span data-key="t-dashboard">Items</span>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="{{ route('borrows') }}">
+                                <i data-feather="folder"></i>
+                                <span data-key="t-dashboard">Borrows</span>
                             </a>
                         </li>
                     </ul>
