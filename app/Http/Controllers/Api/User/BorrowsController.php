@@ -19,6 +19,19 @@ class BorrowsController extends Controller
         return response()->json(['data' => $borrows], 200);
     }
 
+    public function showByBorrowIdAndUserId($borrowId, $userId)
+    {
+        $borrow = Borrows::where('id', $borrowId)
+            ->where('user_id', $userId)
+            ->first();
+
+        if (!$borrow) {
+            return response()->json(['message' => 'Borrow not found for this user'], 404);
+        }
+
+        return response()->json(['data' => $borrow], 200);
+    }
+
     public function create(Request $request)
     {
         $request->validate([

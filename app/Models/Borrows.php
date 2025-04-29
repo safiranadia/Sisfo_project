@@ -28,4 +28,10 @@ class Borrows extends Model
     {
         return $this->belongsTo(Items::class);
     }
+
+// In app/Models/Borrow.php
+    public function return()
+    {
+        return $this->hasOne(Returns::class, 'borrow_id');
+    }
 }

@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\UsersController;
 use App\Http\Controllers\Admin\CategorysController;
 use App\Http\Controllers\Admin\ItemsController;
 use App\Http\Controllers\Admin\BorrowsController;
+use App\Http\Controllers\Admin\ReturnsController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Middleware\AdminMiddleware;
@@ -48,4 +49,5 @@ Route::middleware('auth', AdminMiddleware::class)->group(function () {
     Route::delete('/items/{item}', [ItemsController::class, 'destroy'])->name('item.destroy');
     Route::get('/borrows', [BorrowsController::class, 'index'])->name('borrows');
     Route::post('/borrows/{id}/approve', [BorrowsController::class, 'approve'])->name('borrows.approve');
+    Route::get('/returns', [ReturnsController::class, 'index'])->name('returns');
 });

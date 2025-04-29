@@ -31,6 +31,7 @@
                             <th>Quantity</th>
                             <th>Borrow date</th>
                             <th>Purposes</th>
+                            <th>Status Borrow</th>
                             <th>Status</th>
                             <th>Action</th>
                         </tr>
@@ -45,6 +46,7 @@
                                 <td>{{ $borrow->quantity }}</td>
                                 <td>{{ \Carbon\Carbon::parse($borrow->borrow_date)->format('d M Y') }}</td>
                                 <td>{{ Str::limit($borrow->purposes, 30) }}</td>
+                                <td>{{ $borrow->status }}</td>
                                 <td>
                                     @if ($borrow->is_approved)
                                         <span class="badge bg-success">Approved</span>

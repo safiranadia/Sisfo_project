@@ -54,12 +54,14 @@
                             <select class="form-select @error('position') is-invalid @enderror"
                                 id="position{{ $user->position }}" name="position" required>
                                 <option value="">Select Position</option>
-                                @foreach ($users as $user)
-                                    <option value="{{ $user->position }}"
-                                        {{ old('position', $user->position) == $user->position ? 'selected' : '' }}>
-                                        {{ $user->position }}
-                                    </option>
-                                @endforeach
+                                <option value="student"
+                                    {{ old('position', $user->position) == 'student' ? 'selected' : '' }}>
+                                    Student
+                                </option>
+                                <option value="teacher"
+                                    {{ old('position', $user->position) == 'teacher' ? 'selected' : '' }}>
+                                    Teacher
+                                </option>
                             </select>
                             @error('position')
                                 <div class="invalid-feedback">{{ $message }}</div>

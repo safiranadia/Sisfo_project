@@ -11,7 +11,7 @@ class Returns extends Model
 
     protected $fillable = [
         'user_id',
-        'item_id',
+        'borrow_id',
         'return_date',
         'condition',
         'note',
@@ -27,4 +27,10 @@ class Returns extends Model
     {
         return $this->belongsTo(Items::class);
     }
+
+    public function borrow()
+    {
+        return $this->belongsTo(Borrows::class);
+    }
+
 }

@@ -208,16 +208,11 @@
                             aria-expanded="false">
                             <img class="rounded-circle header-profile-user" src="{{ asset('images/users/avatar-1.jpg') }}"
                                 alt="Header Avatar">
-                            <span class="d-none d-xl-inline-block ms-1 fw-medium">Shawn L.</span>
+                            <span class="d-none d-xl-inline-block ms-1 fw-medium">{{ auth()->user()->name }}</span>
                             <i class="mdi mdi-chevron-down d-none d-xl-inline-block"></i>
                         </button>
                         <div class="dropdown-menu dropdown-menu-end">
                             <!-- item-->
-                            <a class="dropdown-item" href="apps-contacts-profile.html"><i
-                                    class="mdi mdi mdi-face-man font-size-16 align-middle me-1"></i> Profile</a>
-                            <a class="dropdown-item" href="auth-lock-screen.html"><i
-                                    class="mdi mdi-lock font-size-16 align-middle me-1"></i> Lock Screen</a>
-                            <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="{{ route('logout') }}"
                                 onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                 <i class="mdi mdi-logout font-size-16 align-middle me-1"></i> Logout
@@ -275,6 +270,13 @@
                             <a href="{{ route('borrows') }}">
                                 <i data-feather="folder"></i>
                                 <span data-key="t-dashboard">Borrows</span>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="{{ route('returns') }}">
+                                <i data-feather="log-out"></i>
+                                <span data-key="t-dashboard">Returns</span>
                             </a>
                         </li>
                     </ul>
