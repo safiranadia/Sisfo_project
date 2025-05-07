@@ -19,6 +19,10 @@
     </div>
 
     <div class="card">
+        <div class="card-header d-flex justify-content-between align-items-center">
+            <h4 class="card-title">Returns</h4>
+            <a href="{{ route('returns.export') }}" class="btn btn-success waves-effect waves-light">Report</a>
+        </div>
         <div class="card-body">
             <div class="table-responsive">
                 <table class="table table-hover mb-0">

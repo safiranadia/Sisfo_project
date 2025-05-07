@@ -11,6 +11,26 @@ use Illuminate\Support\Facades\DB;
 
 class ReturnsController extends Controller
 {
+    
+    public function countByUserId($userId)
+    {
+        $returns = Returns::where('user_id', $userId)->count();
+
+        return response()->json(['data' => $returns], 200);
+    }
+
+    
+    public function showByUserId($userId)
+    {
+        $returns = Returns::where('user_id', $userId)->get();
+
+        if ($returns->isEmpty()) {
+            return response()->json(['message' => 'No returns found for this user'], 404);
+        }
+
+        return response()->json(['data' => $returns], 200);
+    }
+
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [

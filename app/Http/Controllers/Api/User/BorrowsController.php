@@ -8,6 +8,14 @@ use App\Models\Borrows;
 
 class BorrowsController extends Controller
 {
+    
+    public function countByUserId($userId)
+    {
+        $borrow = Borrows::where('user_id', $userId)->count();
+
+        return response()->json(['data' => $borrow], 200);
+    }
+    
     public function showByUserId($userId)
     {
         $borrows = Borrows::where('user_id', $userId)->get();
@@ -51,6 +59,19 @@ class BorrowsController extends Controller
         ]);
 
         return response()->json(['message' => 'Borrow created successfully', 'data' => $borrow], 201);
+    }
+
+    public function destroy($id)
+    {
+        $borrow = Borrows::findOrFail($id);
+
+        if ($borrow->is_approved) {
+            return response()->json(['message' => 'This borrow already approved and cannot be deleted'], 409);
+        }
+
+        $borrow->delete();
+
+        return response()->json(['message' => 'Borrow deleted successfully'], 200);
     }
 }
 

@@ -55,14 +55,14 @@
                                             <i class="fas fa-pencil-alt"></i>
                                             <span>Edit</span>
                                         </button>
-                                        {{-- <form action="{{ route('category.destroy', $category->id) }}" method="POST">
+                                        <form action="{{ route('user.destroy', $user->id) }}" method="POST">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="btn btn-danger waves-effect waves-light">
                                                 <i class="fas fa-trash-alt"></i>
                                                 <span>Delete</span>
                                             </button>
-                                        </form> --}}
+                                        </form>
                                     </div>
                                 </td>
                             </tr>

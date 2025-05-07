@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Exports\BorrowsExport;
+use App\Imports\ImportBorrows;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 use App\Models\Borrows;
 
 class BorrowsController extends Controller
@@ -67,6 +70,11 @@ class BorrowsController extends Controller
         //
     }
 
+    public function export() 
+    {
+        return Excel::download(new BorrowsExport, 'borrows.xlsx');
+    }
+
     /**
      * Approve a borrow request
      *
@@ -91,3 +99,4 @@ class BorrowsController extends Controller
         return redirect()->back()->with('success', 'Borrow request approved successfully.');
     }
 }
+
