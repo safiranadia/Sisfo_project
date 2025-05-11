@@ -4,9 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Maatwebsite\Excel\Facades\Excel;
-use App\Exports\ReturnsExport;
 use App\Models\Returns;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class ReturnsController extends Controller
 {
@@ -16,8 +15,12 @@ class ReturnsController extends Controller
         return view('pages.returns_page', compact('returns'));
     }
 
-    public function export()
+    public function exportPdf()
     {
-        return Excel::download(new ReturnsExport, 'returns.xlsx');
+        $returns = Returns::all();
+
+        $pdf = Pdf::loadView('exports.returns', compact('returns'));
+
+        return $pdf->download('returns.pdf');
     }
 }

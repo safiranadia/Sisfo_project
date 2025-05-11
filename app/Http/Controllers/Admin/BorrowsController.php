@@ -2,12 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Exports\BorrowsExport;
-use App\Imports\ImportBorrows;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Maatwebsite\Excel\Facades\Excel;
 use App\Models\Borrows;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class BorrowsController extends Controller
 {
@@ -70,9 +68,13 @@ class BorrowsController extends Controller
         //
     }
 
-    public function export() 
+    public function exportPdf() 
     {
-        return Excel::download(new BorrowsExport, 'borrows.xlsx');
+        $borrows = Borrows::all();
+
+        $pdf = Pdf::loadView('exports.borrows', compact('borrows'));
+
+        return $pdf->download('borrows.pdf');
     }
 
     /**

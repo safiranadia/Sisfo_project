@@ -49,7 +49,7 @@ Route::middleware('auth', AdminMiddleware::class)->group(function () {
     Route::delete('/items/{item}', [ItemsController::class, 'destroy'])->name('item.destroy');
     Route::get('/borrows', [BorrowsController::class, 'index'])->name('borrows');
     Route::post('/borrows/{id}/approve', [BorrowsController::class, 'approve'])->name('borrows.approve');
-    Route::get('/borrows/export', [BorrowsController::class, 'export'])->name('borrows.export');
+    Route::get('/borrows/export', [BorrowsController::class, 'exportPdf'])->name('borrows.export');
     Route::get('/returns', [ReturnsController::class, 'index'])->name('returns');
-    Route::get('/returns/export', [ReturnsController::class, 'export'])->name('returns.export');
+    Route::get('/returns/export', [ReturnsController::class, 'exportPdf'])->name('returns.export');
 });
