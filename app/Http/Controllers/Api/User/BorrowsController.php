@@ -18,7 +18,9 @@ class BorrowsController extends Controller
     
     public function showByUserId($userId)
     {
-        $borrows = Borrows::where('user_id', $userId)->get();
+        $borrows = Borrows::with('item') // ini ambil relasi 'item'
+            ->where('user_id', $userId)
+            ->get();
 
         if ($borrows->isEmpty()) {
             return response()->json(['message' => 'No borrows found for this user'], 404);
